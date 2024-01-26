@@ -68,6 +68,7 @@ let map;
     });
 
     floodwarning2.setMap(map);
+
  // Construct third polygon area susceptible to flood
     const floodarea3 = [
       { lat: 20.90114672570202,  lng: -156.24740850989022 },
@@ -77,9 +78,8 @@ let map;
       { lat: 20.90114672570202,  lng: -156.24740850989022 },
     ];
 
-    // Construct second polygon area susceptible to flood
     const floodwarning3 = new google.maps.Polygon({
-      paths: floodarea2,
+      paths: floodarea3,
       strokeColor: "#00008B",
       strokeOpacity: 0.7,
       strokeWeight: 3,
@@ -93,7 +93,7 @@ let map;
     new google.maps.Marker({
       position: { lat: 20.905056704961094, lng: -156.68378061748803 },
       map,
-      title: "Lahaina Civic Center"
+      title: "Disaster Recovery Center:Lahaina Civic Center"
     })
 
   }
