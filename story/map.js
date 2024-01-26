@@ -22,163 +22,41 @@ function initMap() {
       icon: getCircle(magnitude)
     }
   })
-}
-
-function getCircle(magnitude) {
-  return {
-    path: google.maps.SymbolPath.CIRCLE,
-    fillColor: "blue",
-    fillOpacity: 0.5,
-    scale: Math.pow(2, magnitude) / 2,
-    strokeColor: "purple",
-    strokeWeight: 1
+  function getCircle(magnitude) {
+    return {
+      path: google.maps.SymbolPath.CIRCLE,
+      fillColor: "blue",
+      fillOpacity: 0.5,
+      scale: Math.pow(2, magnitude) / 2,
+      strokeColor: "purple",
+      strokeWeight: 1
+    }
   }
+  
+  function eqfeed_callback(results) {
+    map.data.addGeoJson(results)
+  }
+  
+   // Define the LatLng coordinates for the polygon's path.
+   const triangleCoords = [
+    { lat: 25.774, lng: -80.19 },
+    { lat: 18.466, lng: -66.118 },
+    { lat: 32.321, lng: -64.757 },
+    { lat: 25.774, lng: -80.19 }
+  ]
+  
+  // Construct the polygon.
+  const bermudaTriangle = new google.maps.Polygon({
+    paths: triangleCoords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.35
+  })
+  
+  bermudaTriangle.setMap(map)
 }
-
-function eqfeed_callback(results) {
-  map.data.addGeoJson(results)
-}
-
- // Define the LatLng coordinates for the polygon's path.
- const triangleCoords = [
-  { lat: 25.774, lng: -80.19 },
-  { lat: 18.466, lng: -66.118 },
-  { lat: 32.321, lng: -64.757 },
-  { lat: 25.774, lng: -80.19 }
-]
-
-// Construct the polygon.
-const bermudaTriangle = new google.maps.Polygon({
-  paths: triangleCoords,
-  strokeColor: "#FF0000",
-  strokeOpacity: 0.8,
-  strokeWeight: 2,
-  fillColor: "#FF0000",
-  fillOpacity: 0.35
-})
-
-bermudaTriangle.setMap(map)
-
-
-
-// // legend example from https://github.com/googlemaps/js-samples/tree/main/samples/legend
-
-//   const iconBase = "https://maps.google.com/mapfiles/kml/shapes/"
-//   const icons = {
-//     parking: {
-//       name: "Parking",
-//       icon: iconBase + "parking_lot_maps.png"
-//     },
-//     library: {
-//       name: "Library",
-//       icon: iconBase + "library_maps.png"
-//     },
-//     info: {
-//       name: "Info",
-//       icon: iconBase + "info-i_maps.png"
-//     }
-//   }
-
-//   const features = [
-//     {
-//       position: new google.maps.LatLng(-33.91721, 151.2263),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91539, 151.2282),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91747, 151.22912),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.9191, 151.22907),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91725, 151.23011),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91872, 151.23089),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91784, 151.23094),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91682, 151.23149),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.9179, 151.23463),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91666, 151.23468),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.916988, 151.23364),
-//       type: "info"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91665018901448, 151.2282474695587),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91851096391805, 151.2344058214569),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91818154739766, 151.2346203981781),
-//       type: "parking"
-//     },
-//     {
-//       position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
-//       type: "library"
-//     }
-//   ]
-
-//   features.forEach(feature => {
-//     new google.maps.Marker({
-//       position: feature.position,
-//       icon: icons[feature.type].icon,
-//       map: map
-//     })
-//   })
-
-//   const legend = document.getElementById("legend")
-
-//   for (const key in icons) {
-//     const type = icons[key]
-//     const name = type.name
-//     const icon = type.icon
-//     const div = document.createElement("div")
-
-//     div.innerHTML = '<img src="' + icon + '"> ' + name
-//     legend.appendChild(div)
-//   }
-
-//   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend)
 
 
 
