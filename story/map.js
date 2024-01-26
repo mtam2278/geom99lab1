@@ -1,3 +1,5 @@
+// Story map intended to show areas earthquakes and areas of potential flooding in Hawaii
+
 let map;
 
   function initMap() {
@@ -25,6 +27,7 @@ let map;
     });
 
     // Polygon template from google  https://github.com/googlemaps/js-samples/tree/main/samples/polygon-simple
+    // Create polygons representing flood areas which are roughly mapped using https://www.mauicounty.gov/1476/Susceptible-Flooding-Area-Maps
     // Define the LatLng coordinates for the polygon's path.
     const floodarea = [
       { lat: 20.6490437201985, lng: -156.395026501021 },
@@ -34,7 +37,7 @@ let map;
       { lat: 20.6490437201985, lng: -156.395026501021 },
     ];
 
-    // Construct first polygon.
+    // Construct first polygon for area susceptible to flood
     const floodwarning = new google.maps.Polygon({
       paths: floodarea,
       strokeColor: "#00008B",
@@ -54,7 +57,7 @@ let map;
       { lat: 20.903234388810226, lng: -156.91283781469863 },
     ];
 
-    // Construct second polygon.
+    // Construct second polygon area susceptible to flood
     const floodwarning2 = new google.maps.Polygon({
       paths: floodarea2,
       strokeColor: "#00008B",
@@ -65,15 +68,43 @@ let map;
     });
 
     floodwarning2.setMap(map);
+ // Construct third polygon area susceptible to flood
+    const floodarea3 = [
+      { lat: 20.90114672570202,  lng: -156.24740850989022 },
+      { lat: 20.927765052420874, lng: -156.21135961939868 },
+      { lat: 20.830248403437945, lng: -156.05926763380106 },
+      { lat: 20.796551972362185, lng: -156.10595953005674 },
+      { lat: 20.90114672570202,  lng: -156.24740850989022 },
+    ];
+
+    // Construct second polygon area susceptible to flood
+    const floodwarning3 = new google.maps.Polygon({
+      paths: floodarea2,
+      strokeColor: "#00008B",
+      strokeOpacity: 0.7,
+      strokeWeight: 3,
+      fillColor: "#00008B",
+      fillOpacity: 0.5
+    });
+
+    floodwarning3.setMap(map);
+
+    // Marker for  current Disaster Recovery Center in Hawaii taken from https://www.fema.gov/locations/hawaii
+    new google.maps.Marker({
+      position: { lat: 20.905056704961094, lng: -156.68378061748803 },
+      map,
+      title: "Lahaina Civic Center"
+    })
+
   }
     function getCircle(magnitude) {
       return {
         path: google.maps.SymbolPath.CIRCLE,
-        fillColor: "blue",
+        fillColor: "#ed0909",
         fillOpacity: 0.5,
         scale: Math.pow(2, magnitude) / 2,
         strokeColor: "purple",
-        strokeWeight: 1
+        strokeWeight: 2
       };
     }
 
