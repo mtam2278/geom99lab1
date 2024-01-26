@@ -23,10 +23,7 @@ let map;
         icon: getCircle(magnitude)
       };
     });
-    }
-
-    
-
+  }
     function getCircle(magnitude) {
       return {
         path: google.maps.SymbolPath.CIRCLE,
@@ -38,49 +35,7 @@ let map;
       };
     }
 
-    // Polygon template from google  https://github.com/googlemaps/js-samples/tree/main/samples/polygon-simple
-    // Define the LatLng coordinates for the polygon's path.
-    const floodarea = [
-      { lat: 20.6490437201985, lng: -156.395026501021 },
-      { lat: 20.671304758161305,  lng: -156.04398707268288 },
-      { lat: 20.647883887363292, lng: -156.02075827126066 },
-      { lat: 20.58843832493746,  lng: -156.40530518434534 },
-      { lat: 20.6490437201985, lng: -156.395026501021 },
-    ];
-
-    // Construct first polygon.
-    const floodwarning = new google.maps.Polygon({
-      paths: floodarea,
-      strokeColor: "#00008B",
-      strokeOpacity: 0.7,
-      strokeWeight: 3,
-      fillColor: "00008B",
-      fillOpacity: 0.5
-    });
-
-    floodwarning.setMap(map);
-
-    const floodarea2 = [
-      { lat: 20.903234388810226, lng: -156.91283781469863 },
-      { lat: 20.917258027052483, lng: -156.86780078884186 },
-      { lat: 20.83309654616203,  lng: -156.78350071480227 },
-      { lat: 20.814207692342173, lng: -156.8360439116352  },
-      { lat: 20.903234388810226, lng: -156.91283781469863 },
-    ];
-
-    // Construct second polygon.
-    const floodwarning2 = new google.maps.Polygon({
-      paths: floodarea2,
-      strokeColor: "#00008B",
-      strokeOpacity: 0.7,
-      strokeWeight: 3,
-      fillColor: "00008B",
-      fillOpacity: 0.5
-    });
-
-    floodwarning2.setMap(map);
-
-
+    
 // Move eqfeed_callback function definition here
 function eqfeed_callback(results) {
   map.data.addGeoJson(results);
