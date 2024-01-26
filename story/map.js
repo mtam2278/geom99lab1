@@ -2,8 +2,8 @@ let map
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 2,
-    center: { lat: -33.865427, lng: 151.196123 },
+    zoom: 10,
+    center: { lat: 20.334999193082865, lng: -156.12237402661734 },
     mapTypeId: "terrain"
   })
 
@@ -27,8 +27,8 @@ function initMap() {
 function getCircle(magnitude) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
-    fillColor: "red",
-    fillOpacity: 0.2,
+    fillColor: "blur",
+    fillOpacity: 1,
     scale: Math.pow(2, magnitude) / 2,
     strokeColor: "white",
     strokeWeight: 0.5
