@@ -23,11 +23,9 @@ let map;
         icon: getCircle(magnitude)
       };
     });
-
-    // Move eqfeed_callback function definition here
-    function eqfeed_callback(results) {
-      map.data.addGeoJson(results);
     }
+
+    
 
     function getCircle(magnitude) {
       return {
@@ -50,7 +48,7 @@ let map;
       { lat: 20.6490437201985, lng: -156.395026501021 },
     ];
 
-    // Construct the polygon.
+    // Construct first polygon.
     const floodwarning = new google.maps.Polygon({
       paths: floodarea,
       strokeColor: "#00008B",
@@ -70,7 +68,7 @@ let map;
       { lat: 20.903234388810226, lng: -156.91283781469863 },
     ];
 
-    // Construct the polygon.
+    // Construct second polygon.
     const floodwarning2 = new google.maps.Polygon({
       paths: floodarea2,
       strokeColor: "#00008B",
@@ -81,10 +79,15 @@ let map;
     });
 
     floodwarning2.setMap(map);
-  }
 
+
+// Move eqfeed_callback function definition here
+function eqfeed_callback(results) {
+  map.data.addGeoJson(results);
+}
+window.eqfeed_callback = eqfeed_callback;
 window.initMap = initMap;
-// window.eqfeed_callback = eqfeed_callback;
+
 export {};
 
 
